@@ -6,6 +6,14 @@
 import scrapy
 
 
+class PlaylistItem(scrapy.Item):
+    # define the fields for your item here like:
+    title = scrapy.Field()
+    video_count = scrapy.Field()
+    playlist_id = scrapy.Field()
+    videos = scrapy.Field()
+
+
 class VideoItem(scrapy.Item):
     # define the fields for your item here like:
     video_id = scrapy.Field()
@@ -15,11 +23,15 @@ class VideoItem(scrapy.Item):
     keywords = scrapy.Field()
     release_time = scrapy.Field()
     view_count = scrapy.Field()
-    likes = scrapy.Field()
-    comments = scrapy.Field()
+    like_count = scrapy.Field()
+    comment_count = scrapy.Field()
 
-class PlaylistItem(scrapy.Item):
-    # define the fields for your item here like:
-    title = scrapy.Field()
-    video_counts = scrapy.Field()
-    url = scrapy.Field()
+
+class CommentItem(scrapy.Item):
+    user_id = scrapy.Field()
+    comment_time = scrapy.Field()
+    content = scrapy.Field()
+    like_count = scrapy.Field()
+
+
+

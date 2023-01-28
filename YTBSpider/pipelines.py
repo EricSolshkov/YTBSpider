@@ -6,6 +6,7 @@ import re
 
 
 def pre_process(content):
+    content = ''.join(content.splitlines())
     content = re.sub(pattern="\"", repl="\"\"", string=content)
 
     if ',' in content:
@@ -37,18 +38,19 @@ class YTBSpiderPipeline(object):
         self.f.write(str(item['duration'])+",")
         self.f.write(str(item['release_time'])+",")
         self.f.write(str(item['view_count'])+",")
-        self.f.write(str(item['likes'])+",")
-        if len(item['keywords']) > 0:
-            self.f.write('"')
-            for kw in item['keywords'][:-1]:
-                self.f.write(pre_process(str(kw))+',')
-            self.f.write(pre_process(str(item['keywords'][-1])))
-            self.f.write('"')
-        self.f.write(',')
+        self.f.write(str(item['like_count'])+",")
+        #if len(item['keywords']) > 0:
+        #    self.f.write('"')
+        #    for kw in item['keywords'][:-1]:
+        #        self.f.write(pre_process(str(kw))+',')
+        #    self.f.write(pre_process(str(item['keywords'][-1])))
+        #    self.f.write('"')
+        #self.f.write(',')
         if len(item['description']) > 0:
             self.f.write(pre_process(item['description']))
         else:
             self.f.write("\"\"")
+
         self.f.write('\n')
 
         self.f.flush()
